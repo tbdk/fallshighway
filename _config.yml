@@ -1,0 +1,10 @@
+name: Falls Highway
+url: http://fallshighway.com
+permalink: /:year/:month/:day/:title/
+paginate: 1000
+paginate_path: /page:num/
+pygments: true
+author: Tobias Bonnesen
+description: This is my blog.
+archive_dir: /
+exclude: [Gemfile.lock, Gemfile]

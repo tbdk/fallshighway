@@ -1,0 +1,30 @@
+---
+layout: default
+banner: true
+---
+
+{% if page.grouptype == 'tag' %}
+	{% assign posts = site.tags[page.tag] %}
+{% elsif page.grouptype == 'category' %}
+	{% assign posts = site.categories[page.category] %}
+{% elsif page.year %}
+	{% assign posts = page.posts %}
+{% else %}
+	{% assign posts = site.posts %}
+{% endif %}
+
+{{ content }}
+
+<section class="content">
+{% for post in posts %}
+	<article class="teaser" style="background-image: url({{ post.cover }});">
+		<header>
+		    <h1><a href="{{ post.url }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a></h1>
+		    <div class="date">
+		        {{ post.date|date: "%d" }}
+		        <span>{{ post.date|date:"%b %Y" }}</span>
+		    </div>
+		</header>
+	</article>
+{% endfor %}
+</section>

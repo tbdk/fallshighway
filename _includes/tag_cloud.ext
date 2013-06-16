@@ -1,0 +1,9 @@
+{% if site.tags %}
+    <ul class="tag-cloud">
+      {% for tag in site.tags %}
+      <li>
+        <a href="/tag/{{tag|first}}" class="tag-{{ tag | last | size | divided_by:site.tags.size }}">{{ tag | first }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+{% endif %}

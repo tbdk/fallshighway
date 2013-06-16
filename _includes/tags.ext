@@ -1,0 +1,10 @@
+{% if item.tags %}
+<p class="post-tags">
+  Tags:
+  {% for tag in item.tags %}
+  <a href="/tag/{{ tag }}"
+     title="Show all entries tagged by {{ tag }}"
+     rel="tag">{{ tag }}</a>
+  {% endfor %}
+</p>
+{% endif %}

@@ -1,0 +1,9 @@
+{% if item.tags %}
+<p class="post-categories">Categories:
+    {% for category in item.categories %}
+        <a href="/category/{{category}}" title="Show all entries in {{ category }}">
+            {{ category }}
+        </a> 
+    {% endfor %}
+</p>
+{% endif %}

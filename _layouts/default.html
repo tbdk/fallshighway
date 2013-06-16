@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{ site.description }}" />
+    <meta name="author" content="{{ site.author }}" />
+
+    <link href='http://fonts.googleapis.com/css?family=IM+Fell+English+SC|IM+Fell+English:400,400italic' rel='stylesheet' type='text/css'>
+    <link href="/css/main.css" rel='stylesheet' type="text/css">
+    <link href="/css/syntax.css" rel='stylesheet' type="text/css">
+</head>
+<body class="{{ page.class }}">
+
+<header>
+<div class="header-inner">
+    <div class="logo">
+        <a href="/">
+            <img class="static-logo" src="/img/logo@2x.png">
+            <img class="animated-logo" src="/img/logo@2x.gif">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">
+                BLOG
+            </a></li>
+            <li><a href="/gallery/">
+                GALLERY
+            </a></li>
+        </ul>
+        <a href="#" class="" id="nav-toggler">
+            <span class="symbol">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </a>
+    </nav>
+</div>
+</header>
+{% if page.banner %}
+<div class="banner closed">
+    <div class="banner-inner">
+        <a id="banner-opener" href="#">
+            <div class="banner-opener-inner">
+                <span class="symbol">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="banner-opener-text">Show navigation</span>
+            </div>
+        </a>
+        <h1>
+            {% if page.grouptype == 'tag' %}
+                '{{ page.tag }}'  
+            {% elsif page.grouptype == 'category' %}
+                '{{ page.category }}'    
+            {% elsif page.year %}
+                {% if page.month %}{{ page.month|to_month_name }}{% else %}{{ page.year }}{% endif %}
+            {% else %}
+                Archive
+            {% endif %}
+        </h1>
+        {% include archive.ext %}
+    </div>
+</div>
+{% endif %}
+
+{{ content }}
+
+</section>
+<footer>
+    <a href="/"><img src="/img/logo@2x.png" class="logo"></a>
+</footer>
+<script src="/js/main.js"></script>
+{% contentblock scripts %}
+</body>
+</html>
+
+
+

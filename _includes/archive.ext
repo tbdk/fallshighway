@@ -1,0 +1,28 @@
+<div class="archive">
+    <div>
+        <h2>Dates:</h2>
+        <ul>
+            {{ site.archives|archive_list }}
+        </ul>
+    </div>
+    <div>
+        <h2>Tags:</h2>
+        <ul>
+            {% for tag in site.tags %}
+                <li><a class="roll" href="/tag/{{ tag[0] }}/">
+                    <span data-title="{{ tag[0] }}">{{ tag[0] }}</span>
+                </a> ({{ tag[1].size }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2>Categories:</h2>
+        <ul>
+            {% for category in site.categories %}
+                <li><a class="roll" href="/category/{{ category[0] }}/">
+                    <span data-title="{{ category[0] }}">{{ category[0] }}</span>
+                </a> ({{ category[1].size }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
