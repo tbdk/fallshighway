@@ -5,7 +5,7 @@ date:   2013-05-25
 categories: 
     - jekyll
 cover: /img/2013-05-25-welcome-to-my-blog/cover.jpeg
-
+published: false
 ---
 
 #Lorem ipsum

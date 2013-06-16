@@ -3,7 +3,8 @@
 @import url("http://fonts.googleapis.com/css?family=Chelsea\+Market")
 
 $header_width = 160px
-$link_color = hsl(206, 80%, 30%)
+$header_color = rgb(81, 99, 117) //rgb(22, 73, 75)
+$link_color = saturate($header_color, 80%) //hsl(206, 80%, 30%)
 
 body, html
     width 100%
@@ -13,20 +14,27 @@ body
     font-size 10px
     color #444
     background-color #fff
+    font-family 'Helvetica Neue', Helvetica, Arial, sans-serif
 
-body > header 
-    width 100%
+.preload *
+    transition none !important
 
-$header_padding = 50px
-
-body > header .header-inner    
-    padding $header_padding
+body > header
+    opacity 0.9
+    position fixed
+    right 0
+    height 100%
+    width 150px
+    padding 50px 0
+    background-color $header_color
     font-family 'Chelsea Market'
-    position relative
-    clearfix()
+    transition opacity 0.5s
+    &:hover
+        opacity 1
     .logo
         width 150px
         opacity .8
+        margin-bottom 30px
         img
             width 150px
             display block
@@ -37,85 +45,35 @@ body > header .header-inner
                 display none
             .animated-logo
                 display block
-
     > nav
-        position relative
         width 100%
         font-size 2em
         ul
-            overflow hidden
-            height 0
             text-align right
             list-style none
             margin 0
             padding 0
             li
-                margin 0.5em
+                margin 0.5em 0
                 a 
-                    color lighten(black, 40%)
+                    color white
+                    opacity 0.8
                     text-decoration none
                     transition .2s border, .5s opacity
                     border-bottom 3px solid transparent
                     &:hover
-                        color $link_color
+                        //color $link_color
+                        opacity 1
                         border-bottom 3px solid @color
-    > nav.open  ul
-        height auto
 
 #nav-toggler 
     position absolute
-    top -60px
-    right 0
+    z-index 9999
+    top 20px
+    left -30px
     padding 10px
     margin -10px
-    .symbol span
-        background-color lighten(black, 10%)
-
-
-.banner, .gallery
-    width 100%
-    min-height 160px
-    box-shadow inset 0  30px 30px -30px rgba(0, 0, 0, .75),
-               inset 0 -30px 30px -30px rgba(0, 0, 0, .75)
-
-$banner_background_color = lighten(#313947, 5%)
-
-.banner, .gallery, article.teaser
-    background-size cover
-    background-color $banner_background_color
-    background-repeat no-repeat
-    background-position center center
-
-.banner h1
-    margin 0
-    font-size 13em
-    text-shadow 0 0 0.08em black
-    transition text-shadow 0.5s, color 0.5s
-    span 
-        display block
-        position absolute
-        left 0
-        top 0
-        font-size 0.2em
-        text-shadow none
-
-.banner-inner
-    position relative
-    overflow hidden
-    width 100%
-    height 100%
-    font-weight thin
-    color white
-
-.banner.closed
-    min-height 0
-    height 100px
-
-.banner.open
-    h1 
-        color rgba(white, .50)
-        text-shadow 0.02em 0.04em 0.05em $banner_background_color, 
-                    0 0 0 #000
+    background-color $header_color
 
 .symbol 
     display inline-block
@@ -131,113 +89,47 @@ $banner_background_color = lighten(#313947, 5%)
     span:last-child
         margin-bottom 0
 
-#banner-opener
-    position absolute
-    top 50px
-    right 10px
-    display block
-    padding 8px
-    overflow hidden
-    font-size 1.5em
-    transition width 0.5s
-    color white
-    text-decoration none
-    .banner-opener-inner
-        width 100%
-        > span 
-            vertical-align middle
-    &:hover
-        width auto
-        background-color white
-        color $banner_background_color
-        .symbol span
-            background-color $banner_background_color
-
-.archive
-    margin-bottom 50px
-    font-size 1.5em
-    li 
-        margin-bottom 0.5em
-    a 
-        color white
-    a:hover
-        text-decoration none
-
-.roll
-    display inline-block
-    overflow hidden
-    vertical-align top
-    perspective 400px
-    perspective-origin 50% 50%
-
-    span
-        display block
-        position relative
-        padding 0 2px
-        transition all 400ms ease
-        transform-origin 50% 0%
-        transform-style preserve-3d
-
-    &:hover span 
-        background #111
-        transform translate3d(0px, 0px, -30px) rotateX(90deg)
-
-    span:after
-        content attr(data-title)
-        display block
-        position absolute
-        left 0
-        top 0
-        padding 0 2px
-        color #fff
-        background $link_color
-        transform-origin 50% 0%
-        transform translate3d(0px, 105%, 0px) rotateX(-90deg)
-
-    span, span:after
-        border-radius 2px
-
+.wrapper
+    padding-bottom 50px
 
 .content
     font normal normal 1em/1.8em 'Helvetica Neue', Helvetica, Arial, sans-serif
-    //min-height 100%
-    //height auto !important
-    //height 100%
 
-body > footer
-    min-height 100px
-    padding 0 100px
-    border-top 3px solid darken(white, 5%)
-    overflow hidden
-    text-align center
-    img.logo
-        width 200px
-        position relative
-        top -50px
-        opacity 0.2
-
+.banner
+    width 100%
+    min-height 160px
+    box-shadow inset 0  30px 30px -30px rgba(0, 0, 0, .75),
+               inset 0 -30px 30px -30px rgba(0, 0, 0, .75)
 
 .gallery-inner
-    min-height 300px
     padding 50px 0
-    color white
     text-align center
-    text-shadow 0 2px 1px rgba(0, 0, 0, .5)
+    h1, p 
+        font-weight 100
     h1
-        font-family 'Chelsea Market'
         font-size 5em
         line-height 1.618
         margin 0
         padding 0
+        color #444
+        border none
+        text-transform uppercase
     p
-        font-size 2em
+        font-size 3em
+
+.banner, article.teaser
+    background-size cover
+    background-repeat no-repeat
+    background-position center center
 
 article
     > header 
+        font-weight 100
         h1 a
             color #444
             text-decoration none
             border none
+            font-weight 100
 
 article.teaser
     width 100%
@@ -252,7 +144,6 @@ article.teaser
             margin 0
             padding 10px 100px 10px 10px
             text-transform uppercase
-            font-family 'Chelsea Market'
             font-size 3em
             line-height 1em
             position absolute
@@ -260,11 +151,12 @@ article.teaser
             z-index 1
             transition .5s border
             a 
+                font-weight 300
                 hyphens auto
+                text-shadow 0 1px 0 rgba(white, .5)
         .date
             text-align center
             position absolute
-            font-family 'Chelsea Market'
             right 0px
             bottom 0px
             font-size 8em
@@ -296,7 +188,6 @@ article.post
         width 100%
         h1
             margin 0
-            font-family 'Chelsea Market'
             text-transform uppercase
             font-size 4em
             line-height 1em
@@ -311,15 +202,6 @@ article.post
     .post-content
         h1, h2, h3, h4, h5, h6
             position relative
-            &:before
-                content ""
-                width 1em
-                height 0.5em
-                position absolute
-                bottom -0.40em 
-                left -0.40em
-                border-left 3px solid darken(white, 10%)
-                border-bottom @border-left
 
     .post-content, .relations
         a 
@@ -390,16 +272,14 @@ generate_custom_share_button_style(background-color)
         &.google-plus-share
             generate_custom_share_button_style(#c73d00)
 
-
-@media screen and (min-width: 600px)
-    .archive > div 
-        width 33%
-        display inline-block
-        vertical-align top
-
 @media screen and (max-width: 799px)
-    article.teaser
-        //font-size 0.8em
+    body > header
+        padding-left  (50px / 2) 
+        padding-right @padding-left
+        transition padding 0.5s
+    .wrapper
+        transition margin 0.5s
+        margin-right 150px + 50px
     article.post 
         padding-left 50px
         padding-right @padding-left
@@ -410,23 +290,23 @@ generate_custom_share_button_style(background-color)
         box-sizing border-box
 
 @media screen and (max-width: 600px)
+    body > header
+        right -190px
+        transition right 1s
+    body > header.open
+        right 0
+    .wrapper
+        margin-right 10px
     article.post 
         padding-left 20px
         padding-right @padding-left
 
 @media screen and (min-width: 800px)
-    body > header .header-inner > nav
-        position absolute
-        bottom $header_padding + 20px
-        right $header_padding
-        font-size 2em
-        width auto
-        ul
-            height auto
-            text-align left
-            li
-                float left
-                margin 0 0.5em
+    body > header
+        padding-left  (150px / 2) 
+        padding-right @padding-left
+    .wrapper
+        margin-right 300px
     #nav-toggler
         display none
     article.post 
@@ -434,13 +314,12 @@ generate_custom_share_button_style(background-color)
             position relative
             left -40px 
             padding-left 32px
-            border-left 8px solid darken(white, 10%)
+            border-left 8px solid darken(white, 5%)
             &:hover
-                border-color #444
+                border-color $header_color
             .date 
                 text-align center
                 position absolute
-                font-family 'Chelsea Market'
                 font-size 6em
                 right 100%
                 margin-right 35px
@@ -460,34 +339,27 @@ generate_custom_share_button_style(background-color)
                 padding-right 30px
                 h1 
                     text-align right
-                    border-right 8px solid darken(white, 10%)
+                    border-right 8px solid darken(white, 5%)
                     padding 20px 30px 20px 0
                     margin 0
+                    font-weight 100
     .social-actions 
         a, a:visited 
             padding 0 2em
 
-@media screen and (max-width: 959px) and (min-width: 800px)
+@media screen and (max-width: 1229px) and (min-width: 800px)
     article.post
-    body > footer
         width auto
         margin 0
         margin-left 180px
-    body > header > .header-inner
-        margin-left 130px
     article.post
         padding-right 50px
 
-@media screen and (min-width: 960px)
+@media screen and (min-width: 1230px)
     article.post
     article.teaser > header 
     .gallery-inner
-    body > header .header-inner
-    body > footer
         width 600px
-        margin 0 auto
-    .banner-inner
-        width 800px
         margin 0 auto
     article.teaser
         > header

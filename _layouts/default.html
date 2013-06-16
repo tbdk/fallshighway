@@ -12,10 +12,16 @@
     <link href="/css/main.css" rel='stylesheet' type="text/css">
     <link href="/css/syntax.css" rel='stylesheet' type="text/css">
 </head>
-<body class="{{ page.class }}">
+<body class="preload {{ page.class }}">
 
 <header>
-<div class="header-inner">
+    <a href="#" class="" id="nav-toggler">
+        <span class="symbol">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </a>
     <div class="logo">
         <a href="/">
             <img class="static-logo" src="/img/logo@2x.png">
@@ -31,51 +37,12 @@
                 GALLERY
             </a></li>
         </ul>
-        <a href="#" class="" id="nav-toggler">
-            <span class="symbol">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </a>
     </nav>
-</div>
 </header>
-{% if page.banner %}
-<div class="banner closed">
-    <div class="banner-inner">
-        <a id="banner-opener" href="#">
-            <div class="banner-opener-inner">
-                <span class="symbol">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <span class="banner-opener-text">Show navigation</span>
-            </div>
-        </a>
-        <h1>
-            {% if page.grouptype == 'tag' %}
-                '{{ page.tag }}'  
-            {% elsif page.grouptype == 'category' %}
-                '{{ page.category }}'    
-            {% elsif page.year %}
-                {% if page.month %}{{ page.month|to_month_name }}{% else %}{{ page.year }}{% endif %}
-            {% else %}
-                Archive
-            {% endif %}
-        </h1>
-        {% include archive.ext %}
-    </div>
+<div class="wrapper">
+    {{ content }}
 </div>
-{% endif %}
 
-{{ content }}
-
-</section>
-<footer>
-    <a href="/"><img src="/img/logo@2x.png" class="logo"></a>
-</footer>
 <script src="/js/main.js"></script>
 {% contentblock scripts %}
 </body>

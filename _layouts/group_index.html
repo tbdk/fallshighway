@@ -1,6 +1,6 @@
 ---
 layout: default
-banner: true
+comments: true
 ---
 
 {% if page.grouptype == 'tag' %}
@@ -13,18 +13,22 @@ banner: true
 	{% assign posts = site.posts %}
 {% endif %}
 
-{{ content }}
-
 <section class="content">
-{% for post in posts %}
-	<article class="teaser" style="background-image: url({{ post.cover }});">
-		<header>
-		    <h1><a href="{{ post.url }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a></h1>
-		    <div class="date">
-		        {{ post.date|date: "%d" }}
-		        <span>{{ post.date|date:"%b %Y" }}</span>
-		    </div>
-		</header>
-	</article>
-{% endfor %}
+{% if posts|size == 1 and page.type == "index" %}
+	{% assign item = posts[0] %}
+	{% assign content = item.content %}
+	{% include post.ext %}
+{% else %}
+	{% for post in posts %}
+		<article class="teaser" style="background-image: url({{ post.cover }});">
+			<header>
+			    <h1><a href="{{ post.url }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a></h1>
+			    <div class="date">
+			        {{ post.date|date: "%d" }}
+			        <span>{{ post.date|date:"%b %Y" }}</span>
+			    </div>
+			</header>
+		</article>
+	{% endfor %}
+{% endif %}
 </section>
