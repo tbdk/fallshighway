@@ -180,6 +180,7 @@ article.teaser > header {
   -o-transition: 0.5s background-color;
   -ms-transition: 0.5s background-color;
   transition: 0.5s background-color;
+  font-family: "Chelsea Market";
 }
 article.teaser > header h1 {
   border-left: 10px solid rgba(0,0,0,0.2);
