@@ -119,6 +119,7 @@ body > header > nav ul li a:hover {
   margin-bottom: 0;
 }
 .wrapper {
+  overflow: auto;
   padding-bottom: 50px;
 }
 .content {
