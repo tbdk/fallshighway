@@ -14,7 +14,9 @@ comments: true
 {% endif %}
 
 <section class="content">
-{% if posts|size == 1 and page.type == "index" %}
+{% capture posts_size %}{{ posts|size }}{% endcapture %}
+
+{% if posts_size == "1" and page.type == "index" %}
 	{% assign item = posts[0] %}
 	{% assign content = item.content %}
 	{% include post.ext %}
