@@ -39,6 +39,7 @@ task :post do
     post.puts 'cover: /covers/'
     post.puts "categories: []"
     post.puts "tags: []"
+    post.puts "layout: post"
     post.puts "comments: true"
     post.puts "published: true"
     post.puts "---"
