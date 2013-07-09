@@ -42,6 +42,7 @@ task :post do
     post.puts "layout: post"
     post.puts "comments: true"
     post.puts "published: true"
+    post.puts ""
     post.puts "---"
     post.puts ""
   end
